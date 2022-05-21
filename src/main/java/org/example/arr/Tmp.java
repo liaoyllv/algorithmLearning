@@ -2,7 +2,11 @@ package org.example.arr;
 
 public class Tmp {
 
-    public static int searchInsert(int[] nums, int target) {
+    /**
+     * 二分查找
+     * <a href="https://leetcode-cn.com/problems/binary-search/">https://leetcode-cn.com/problems/binary-search/</a>
+     */
+    public static int search(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
         int middle;
@@ -21,6 +25,11 @@ public class Tmp {
         return left;
     }
 
+
+    /**
+     * 移除元素
+     * <a href="https://leetcode-cn.com/problems/remove-element/">https://leetcode-cn.com/problems/remove-element/</a>
+     */
     public static int removeElement(int[] nums, int val) {
         int fast = 0;
         int slow = 0;
@@ -33,6 +42,10 @@ public class Tmp {
         return slow;
     }
 
+    /**
+     * 有序数组的平方根
+     * <a href="https://leetcode-cn.com/problems/squares-of-a-sorted-array/">https://leetcode-cn.com/problems/squares-of-a-sorted-array/</a>
+     */
     public static int[] sortedSquares(int[] nums) {
         int left = 0;
         int right = nums.length - 1;
@@ -49,6 +62,10 @@ public class Tmp {
         return newArr;
     }
 
+    /**
+     * 长度最小的子数组
+     * <a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">https://leetcode-cn.com/problems/minimum-size-subarray-sum/</a>
+     */
     public static int minSubArrayLen(int target, int[] nums) {
         int left = 0, sum = 0, min = Integer.MAX_VALUE;
 
@@ -67,27 +84,37 @@ public class Tmp {
         return min == Integer.MAX_VALUE ? 0 : min;
     }
 
+    /**
+     * 螺旋矩阵
+     * <a href="https://leetcode-cn.com/problems/spiral-matrix-ii/">https://leetcode-cn.com/problems/spiral-matrix-ii/</a>
+     */
     public static int[][] generateMatrix(int n) {
         int[][] arr = new int[n][n];
         int index = 1;
         int left = 0;
         int top = 0;
         for (int i = 0; i < n / 2; i++) {
+            // 模拟上侧从左到右
             for (int j = left; j < n - i - 1; j++) {
                 arr[i][j] = index++;
             }
+            // 模拟右侧从上到下
             for (int j = top; j < n - i - 1; j++) {
                 arr[j][n - i - 1] = index++;
             }
+            // 模拟下侧从右到左
             for (int j = n - 1 - i; j > i; j--) {
                 arr[n - i - 1][j] = index++;
             }
+            // 模拟左侧从下到上
             for (int j = n - 1 - i; j > top; j--) {
                 arr[j][i] = index++;
             }
             left++;
             top++;
         }
+
+        // 最中间的元素
         if (n % 2 == 1) {
             arr[n / 2][n / 2] = index;
         }

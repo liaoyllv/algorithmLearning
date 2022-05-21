@@ -1,11 +1,11 @@
 package org.example.str;
 
-import java.util.Arrays;
 
 /**
- * https://programmercarl.com/0028.%E5%AE%9E%E7%8E%B0strStr.html
+ * https://leetcode.cn/problems/implement-strstr/
+ * IndexOf()
  */
-public class KMP {
+public class IndexOf {
 
     /**
      * 初始化模式串next数组，最长相等前后缀表
@@ -36,9 +36,9 @@ public class KMP {
         return next;
     }
 
-    private static boolean kmp(String a, String b) {
+    private static int strStr(String a, String b) {
         if (a.length() < b.length()) {
-            return false;
+            return -1;
         }
         int[] next = initiate(b);
 
@@ -54,21 +54,22 @@ public class KMP {
             if (arrayA[i] == arrayB[j]) {
                 // 是否为最后一个字符则成功匹配
                 if (j == b.length() - 1) {
-                    return true;
-                }else {
+                    return i - j;
+                } else {
                     j++;
                 }
             }
         }
 
-        return false;
+        return -1;
     }
 
-    public static void main(String[] args) {
-//        Arrays.stream(initiate("aabaaf")).asLongStream().forEach(System.out::println);
 
-        System.out.println(kmp("aabaabaafa", "abaaba"));
-        System.out.println(kmp("aafaab", "aab"));
+    public static void main(String[] args) {
+        //        Arrays.stream(initiate("aabaaf")).asLongStream().forEach(System.out::println);
+
+        System.out.println(strStr("aabaabaafa", "aabaaf"));
+        System.out.println(strStr("aafaab", "aab"));
     }
 
 
